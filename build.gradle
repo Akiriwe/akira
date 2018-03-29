@@ -10,6 +10,7 @@ repositories {
 
 dependencies {
     compile 'org.jsoup:jsoup:1.11.2'
+    compile 'com.google.code.gson:gson:2.8.2'
     compileOnly 'org.projectlombok:lombok:1.16.20'
 
     apt "org.projectlombok:lombok:1.16.20"
