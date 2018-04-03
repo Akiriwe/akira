@@ -13,8 +13,6 @@ public class Grabber {
             String link = "http://daily-menu.ru/dailymenu/recipes/view/" + i;
             RecipeDto dto = new DailyMenuRecipeDocumentParser().getRecipe(link);
             recipeDtos.add(dto);
-            Gson json = new Gson();
-            System.out.println(json.toJson(dto));
         }
         Gson json = new Gson();
         System.out.println(json.toJson(recipeDtos));
