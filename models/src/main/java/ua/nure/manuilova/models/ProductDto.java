@@ -1,4 +1,4 @@
-package ua.nure.manuilova.grabber;
+package ua.nure.manuilova.models;
 
 import lombok.Data;
 

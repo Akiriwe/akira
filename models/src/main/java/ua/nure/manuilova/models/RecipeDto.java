@@ -1,4 +1,4 @@
-package ua.nure.manuilova.grabber;
+package ua.nure.manuilova.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import lombok.Setter;
 
 @Data
 public class RecipeDto {
+    private Integer _id;
     private String sourceLink = "";
     private String recipeName = "";
     private String imageLink = "";

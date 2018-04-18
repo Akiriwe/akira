@@ -1,2 +1,4 @@
 rootProject.name = 'akira'
+include 'models'
 include 'recipe_grabber'
+include 'web'

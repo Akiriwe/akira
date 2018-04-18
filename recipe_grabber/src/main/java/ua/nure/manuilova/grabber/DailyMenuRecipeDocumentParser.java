@@ -1,5 +1,8 @@
 package ua.nure.manuilova.grabber;
 
+import ua.nure.manuilova.models.RecipeDto;
+import ua.nure.manuilova.models.ProductDto;
+
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,8 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DailyMenuRecipeDocumentParser {
-    public RecipeDto getRecipe(String url) throws IOException {
+class DailyMenuRecipeDocumentParser {
+    static RecipeDto getRecipe(int id) throws IOException {
+        String url = "http://daily-menu.ru/dailymenu/recipes/view/" + id;
         Document doc = null;
         try {
             doc = Jsoup.connect(url).get();
@@ -23,6 +27,7 @@ public class DailyMenuRecipeDocumentParser {
         }
 
         RecipeDto recipeDto = new RecipeDto();
+        recipeDto.set_id(id);
         recipeDto.setSourceLink(url);
         Elements recipeTitle = doc.getElementsByClass("recipe_title");
         recipeDto.setRecipeName(recipeTitle.first().ownText());
@@ -99,15 +104,17 @@ public class DailyMenuRecipeDocumentParser {
         return recipeDto;
     }
 
-    private List<String> parseVariables(Element element) {
-        return element.getElementsByClass("variable").stream().map(Element::text).collect(Collectors.toList());
+    private static List<String> parseVariables(Element element) {
+        return element.getElementsByClass("variable").stream()
+                .map(Element::text)
+                .collect(Collectors.toList());
     }
 
-    private Double parseNumber(String number) {
+    private static Double parseNumber(String number) {
         return number.contains("-") ? 0 : Double.parseDouble(number);
     }
 
-    private Double parsePercent(String number) {
+    private static Double parsePercent(String number) {
         return Double.parseDouble(number.substring(0, number.length() - 1));
     }
 }
